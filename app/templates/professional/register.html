@@ -1,0 +1,63 @@
+{% extends "base.html" %} 
+
+{% block title %} Register - Household  {% endblock %}
+
+{%block content%}
+<div class="container my-5 max-width-900">
+    <h2 align="center">Professional Register</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            {{ form.first_name.label(class="form-label") }}
+            {{ form.first_name(class="form-control", placeholder="John") }}
+        </div>
+        <div class="mb-3">
+            {{ form.last_name.label(class="form-label") }}
+            {{ form.last_name(class="form-control" , placeholder="Deo") }}
+        </div>
+        <div class="mb-3">
+            {{ form.gender.label(class="form-label") }}
+            {{ form.gender(class="form-select") }}
+        </div>
+        <div class="mb-3">
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control", placeholder="John@example.com" ,type="email") }}
+        </div>
+        <div class="mb-3">
+            {{ form.phone_no.label(class="form-label") }}
+            {{ form.phone_no(class="form-control", placeholder="908988****" ,type="tel") }}
+        </div>
+        <div class="mb-3">
+            {{ form.password.label(class="form-label") }}
+            {{ form.password(class="form-control", placeholder="*********") }}
+        </div>
+        <div class="mb-3">
+            {{ form.service_name.label(class="form-label") }}
+            {{ form.service_name(class="form-control", placeholder="Your Service Name") }}
+        </div>
+        <div class="mb-3">
+            {{ form.experience.label(class="form-label") }}
+            {{ form.experience(class="form-control", placeholder="eg: 2 Years") }}
+        </div>
+        <div class="mb-3">
+            {{ form.document.label(class="form-label") }}
+            {{ form.document(class="form-control", placeholder="PDF only") }}
+        </div>
+        <div class="mb-3">
+            {{ form.address.label(class="form-label") }}
+            {{ form.address(class="form-control", placeholder="Your full address") }}
+        </div>
+        <div class="mb-3">
+            {{ form.pin_code.label(class="form-label") }}
+            {{ form.pin_code(class="form-control", placeholder="110001") }}
+        </div>
+        <div class="mb-3">
+            {{ form.is_active(class="form-check-input") }}
+            {{ form.is_active.label(class="form-check-label") }}
+        <div class="mb-3 mt-3 d-grid gap-2">
+            <button type="submit" class="btn btn-primary w-full">Submit</button>
+        </div>
+    </form>
+    <h6 align="center">Already have account? <a href="{{url_for('auth.login')}}">Log In!</a></h6>
+</div>
+{% endblock %}

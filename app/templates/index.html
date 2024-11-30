@@ -1,0 +1,21 @@
+{% extends "base.html" %} 
+
+{% block title %} Home - Household {% endblock %}
+
+{%block content%}
+<div class="container mt-3">
+    <h3 align="center">Looking For!</h3>
+    <div class="services">
+          {% for category in categories %}
+              <a href="{{ url_for('public.services_by_category', category=category.name) }}" class="text-decoration-none">
+                <div class="card" style="width: 18rem;">
+                  <div class="card-body">
+                    <img class="icon" src="{{ url_for('static', filename=category.icon) }}" alt="App Icon">
+                    <h5 class="card-title">{{category.name}}</h5>
+                  </div>
+                </div>
+              </a>
+          {% endfor %}  
+    </div>
+</div>
+{% endblock %}

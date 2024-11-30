@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Rate Professional{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h3>Rate the Professional</h3>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            {{ form.rating.label(class="form-label") }}
+            {{ form.rating(class="form-control") }}
+            {% for error in form.rating.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
+</div>
+{% endblock %}

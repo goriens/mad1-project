@@ -1,0 +1,52 @@
+{% extends "base.html" %} 
+
+{% block title %} Orders - Household  {% endblock %}
+
+{%block content%}
+<div class="container">
+        <h2>Customer Orders</h2>
+        <table class="table table-striped my-3">
+            <thead>
+              <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Ful Name</th>
+                <th scope="col">Server Name</th>
+                <th scope="col">Status</th>
+                <th scope="col">Professional</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for req in requests %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ req.customer.first_name }} {{ req.customer.last_name }}</td>
+                    <td>{{ req.service.name }}</td>
+                    <td>
+                        {%if req.status=="Pending"%}
+                            <span class="badge text-bg-warning">{{ req.status }}</span>
+                        {%elif req.status=="Accepted"%}
+                            <span class="badge text-bg-info">{{ req.status }}</span>
+                        {%elif req.status=="Canceled"%}
+                            <span class="badge text-bg-danger">{{ req.status }}</span>
+                        {%else%}
+                            <span class="badge text-bg-success">{{ req.status }}</span>
+                        {%endif%}
+                    </td>
+                    <td>{{ req.professional.first_name if req.professional else 'Not Assigned' }}</td>
+                    <td>
+                        <a href="" class="btn btn-info btn-sm">
+                            <i class="fa-solid fa-eye"></i>
+                        </a>
+                        <a href="{{ url_for('admin.update_request', request_id=req.id) }}" class="btn btn-secondary btn-sm">
+                            <i class="fa-solid fa-pen-to-square""></i> 
+                        </a>
+                        <form action="{{ url_for('admin.delete_request', request_id=req.id) }}" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i> </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+     </table>
+</div>
+{% endblock %}

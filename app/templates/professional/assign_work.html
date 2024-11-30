@@ -1,0 +1,56 @@
+{% extends "base.html" %} 
+
+{% block title %} Home - Household {% endblock %}
+
+{%block content%}
+<div class="container mt-3">
+    <h2>Assign Work</h2>
+    <table class="table table-striped my-3">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Customer</th>
+            <th scope="col">Service</th>
+            <th scope="col">Status</th>
+            <th scope="col">Requested Date</th>
+            <th scope="col">Preferred Date</th>
+            <th scope="col">Address</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for request  in assigned_requests  %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ request.customer.first_name }} {{ request.customer.last_name }}</td>
+                <td>{{ request.service.name }}</td>
+                <td>
+                    {%if request.status=="Pending"%}
+                    <span class="badge text-bg-warning">{{ request.status }}</span>
+                    {%elif request.status=="Accepted"%}
+                        <span class="badge text-bg-info">{{ request.status }}</span>
+                    {%elif request.status=="Canceled"%}
+                        <span class="badge text-bg-danger">{{ request.status }}</span>
+                    {%else%}
+                        <span class="badge text-bg-success">{{ request.status }}</span>
+                    {%endif%}
+                </td>
+                <td>{{ request.requested_date.strftime('%Y-%m-%d') }}</td>
+                <td>{{ request.preferred_date.strftime('%Y-%m-%d') if request.preferred_date else "Not specified" }}</td>
+                <td>{{ request.address }}</td>
+                <td>
+                    <form method="POST" style="display: inline-block;">
+                        <input type="hidden" name="request_id" value="{{ request.id }}">
+                        <button type="submit" name="action" value="complete" class="btn btn-success btn-sm" {% if request.status in ['Completed', 'Canceled'] %}disabled{% endif %}>Complete</button>
+                    </form>
+                    <form method="POST" style="display: inline-block;">
+                        <input type="hidden" name="request_id" value="{{ request.id }}">
+                        <button type="submit" name="action" value="cancel" class="btn btn-danger btn-sm" {% if request.status in ['Completed', 'Canceled'] %}disabled{% endif %}>Cancel</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+ </table>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %} Admin Dashboard - Summary {% endblock %}
+
+{% block content %}
+<div class="container">
+  <h3>Dashboard</h3>
+  <div class="d-flex justify-content-center">
+    <img src="data:image/png;base64,{{ graph_url }}" class="img-fluid" alt="Charts">
+</div>
+</div>
+{% endblock %}

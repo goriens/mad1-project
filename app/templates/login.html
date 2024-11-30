@@ -1,0 +1,24 @@
+{% extends "base.html" %} 
+
+{% block title %} Login - Household  {% endblock %}
+
+{%block content%}
+<div class="container my-5 max-width-900">
+    <h2 align="center">Log In</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class_="form-control", type="email", placeholder="name@example.com") }}
+          </div>
+          <div class="mb-3">
+            {{ form.password.label(class="form-label") }}
+            {{ form.password(class_="form-control", placeholder="********") }}
+          </div>
+          <div class="mb-3 mt-3 d-grid gap-2">
+            <button type="submit" class="btn btn-primary w-full">Submit</button>
+        </div>
+    </form>
+    <h6 align="center">New User? <a href="{{url_for('auth.choose_register')}}">Sign Up!</a></h6>
+</div>
+{% endblock %}

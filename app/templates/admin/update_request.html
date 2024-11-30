@@ -1,0 +1,23 @@
+{% extends "base.html" %} 
+
+{% block title %} Login - Household  {% endblock %}
+
+{%block content%}
+<div class="container">
+    <h1>View Request Order</h1>
+    <p class="fw-semibold">Service Category - <span class="badge text-bg-success">{{current_request.service.category}}</span></p>
+    <p class="fw-semibold">Service Name - <span class="badge text-bg-secondary">{{current_request.service.name}}</span></p>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-group mb-3">
+            <label for="professional_id">Assign Professional</label>
+            {{ form.professional_id(class="form-control") }}
+        </div>
+        <div class="form-group mb-3">
+            <label for="status">Status</label>
+            {{ form.status(class="form-control") }}
+        </div>
+        <button type="submit" class="btn btn-primary">Update Request</button>
+    </form>
+</div>
+{% endblock %}

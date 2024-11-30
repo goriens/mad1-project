@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}
+Services - {{ category }}
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="mb-4">Best {{ category }} Packages</h2>
+    {% if services %}
+    <div class="row">
+        {% for service in services %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="packages-card">
+                    <h5 class="card-title">{{ service.name }}</h5>
+                    <p class="card-text text-muted">{{ service.description }}</p>
+                   <div class="d-flex justify-content-between">
+                        <p class="card-text"><strong>Time Required:</strong> {{ service.time_required }}</p>
+                        <p class="card-text"><strong>Price:</strong> ₹{{ service.price }}</p>
+                   </div>
+                   <a href="{{ url_for('public.service_request',category=category, service_id=service.id) }}">
+                        <button class="btn btn-primary">Book</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-muted">No services available in this category.</p>
+    {% endif %}
+</div>
+{% endblock %}

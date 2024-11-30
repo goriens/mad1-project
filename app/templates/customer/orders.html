@@ -1,0 +1,67 @@
+{% extends "base.html" %} 
+
+{% block title %} Orders - Household {% endblock %}
+
+{%block content%}
+<div class="container">
+    <h3>Your Orders</h3>
+    {% if requests %}
+    <ul>
+        <table class="table table-striped my-3">
+            <thead>
+              <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Service Name</th>
+                <th scope="col">Preferred Date</th>
+                <th scope="col">Professional Name</th>
+                <th scope="col">Phone No.</th>
+                <th scope="col">Status</th>
+                <th scope="col">Info</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for req in requests %}
+              <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td>{{req.service.name}}</td>
+                <td>{{req.preferred_date }}</td>
+                <td>
+                    {% if req.professional %}
+                    {{ req.professional.first_name }} {{ req.professional.last_name }}
+                    {% else %}
+                    <span class="badge text-bg-warning">Pending Assignment</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if req.professional %}
+                    {{ req.professional.phone_no }}
+                    {% else %}
+                    <span class="badge text-bg-warning">Pending Assignment</span>
+                    {% endif %}
+                </td>
+                <td>{%if req.status=="Pending"%}
+                        <span class="badge text-bg-warning">{{ req.status }}</span>
+                    {%elif req.status=="Accepted"%}
+                        <span class="badge text-bg-info">{{ req.status }}</span>
+                    {%elif req.status=="Cancelled"%}
+                        <span class="badge text-bg-danger">{{ req.status }}</span>
+                    {%else%}
+                        <span class="badge text-bg-success">{{ req.status }}</span>
+                    {%endif%}
+                </td>
+                <td>
+                    <a href="{{ url_for('customer.view_order', request_id=req.id) }}" class="btn btn-link">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+    </ul>
+{% else %}
+    <p>You have no service requests.</p>
+{% endif %}
+   
+</div>
+{% endblock %}

@@ -1,0 +1,86 @@
+.max-width-900 {
+    max-width: 700px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 10px;
+    padding: 30px 20px;
+    margin: auto;
+}
+.services{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin: 20px 0px;
+}
+.card:hover{
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  transition: all 0.5s;
+  cursor: pointer;
+  transform: scale(1.01);
+}
+.card-body{
+  text-align: center;
+}
+.icon{
+  width: 60%;
+  padding: 20px;
+}
+.logged-user{
+  color: #fff;
+  cursor: pointer;
+}
+.logged-user:hover{
+  color: #ffffffd9;
+}
+.alert-box{
+  display: grid;
+  place-items: center;
+  margin: 10px 10px;
+}
+.alert{
+  max-width: 700px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  width: 100%;
+}
+.row.content {
+  height: 550px
+}
+.sidenav {
+  background-color: #f1f1f1;
+  height: 100%;
+}    
+@media screen and (max-width: 767px) {
+  .row.content {
+    height: auto;
+  } 
+}
+.admin-nav{
+  display: flex;
+  justify-content: space-between;
+}
+.fa-solid{
+  cursor: pointer;
+}
+.log-user-box{
+  color: #fff;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+.profile{
+  margin-right: 10px;
+}
+.profile:hover{
+  color: #ffffffbf;
+}
+.user-details{
+  margin: auto;
+  background-color: rgba(219, 219, 219, 0.111);
+}
+.profile-btn{
+  max-width: 700px;
+  margin: auto;
+}
+.packages-card{
+  padding: 10px 15px;
+}

@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}Customer Profile{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 align="center">Profile Details</h2>
+              <div class="user-details mb-1 max-width-900">
+                <div class="row g-0">
+                  <div class="col-md-5 gradient-custom text-center"
+                    style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                    <img src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"
+                      alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+                      <h6><span class="badge text-bg-secondary">{{user.role.value}}</span></h6>
+                    <h5>{{user.first_name.capitalize()}} {{user.last_name.capitalize()}}</h5>
+                    <p>{{user.email}}</p>
+                  </div>
+                  <div class="col-md-7">
+                    <div class="card-body p-4">
+                      <h6>Information</h6>
+                      <hr class="mt-0 mb-4">
+                      <div class="row pt-1">
+                        <div class="col-6 mb-3">
+                          <h6>Gender</h6>
+                          <p class="text-muted">{{user.gender}}</p>
+                        </div>
+                        <div class="col-6 mb-3">
+                          <h6>Phone</h6>
+                          <p class="text-muted">123456789</p>
+                        </div>
+                        
+                      </div>
+                      <h6>Address</h6>
+                      <hr class="mt-0 mb-4">
+                      <div class="row pt-1">
+                        <div class="col-6 mb-3">
+                          <h6>Home Town</h6>
+                          <p class="text-muted">{{user.address}}</p>
+                        </div>
+                        <div class="col-6 mb-3">
+                          <h6>Pin Code</h6>
+                          <p class="text-muted">{{user.pin_code}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+   <div class="mb-3 mt-3 d-grid gap-2 profile-btn">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+        Edit Profile
+    </button>
+   </div>
+
+    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form for editing the profile -->
+                    <form method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="mb-3">
+                            {{ form.first_name.label }}
+                            {{ form.first_name(class="form-control", placeholder="First Name") }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.last_name.label }}
+                            {{ form.last_name(class="form-control", placeholder="Last Name") }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.gender.label }}
+                            {{ form.gender(class="form-control") }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.email.label }}
+                            {{ form.email(class="form-control", placeholder="Email") }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.address.label }}
+                            {{ form.address(class="form-control", placeholder="Address") }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.pin_code.label }}
+                            {{ form.pin_code(class="form-control", placeholder="PIN Code") }}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            {{ form.submit(class="btn btn-primary") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

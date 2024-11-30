@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %} View Service - {{ service.name }} {% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>{{ service.name }}</h2>
+        <a href="{{ url_for('admin.services') }}" class="btn btn-secondary">Back to Services</a>
+    </div>
+    <hr>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Service Details</h5>
+            <p><strong>Name:</strong> {{ service.name }}</p>
+            <p><strong>Base Price:</strong> ₹{{ service.price }}</p>
+            <p><strong>Time Required:</strong> {{ service.time_required }} Hours</p>
+            <p><strong>Category:</strong> {{ service.category }}</p>
+            <p><strong>Description:</strong> {{ service.description }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
